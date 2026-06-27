@@ -48,11 +48,13 @@ cmake -S "$ROOT" -B "$BUILD_DIR" -G "$GENERATOR" \
 cmake --build "$BUILD_DIR"
 ctest --test-dir "$BUILD_DIR" --output-on-failure
 
-APP="$BUILD_DIR/x360receiverbridge.app/Contents/MacOS/x360receiverbridge"
+APP_BUNDLE="$BUILD_DIR/X360 Controller Bridge.app"
+APP="$APP_BUNDLE/Contents/MacOS/X360 Controller Bridge"
 if [[ -x "$APP" ]]; then
     echo
-    echo "Built: $APP"
-    echo "Next:  $APP --list"
+    echo "Built: $APP_BUNDLE"
+    echo "Launch: open '$APP_BUNDLE'"
+    echo "CLI:    '$APP' --help"
 else
     echo "Build completed, but the expected app executable was not found: $APP" >&2
     exit 1

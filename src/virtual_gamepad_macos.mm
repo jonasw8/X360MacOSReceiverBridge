@@ -1,8 +1,14 @@
 #include "x360bridge/virtual_gamepad.hpp"
 
 #import <CoreFoundation/CoreFoundation.h>
+#import <ApplicationServices/ApplicationServices.h>
 #import <IOKit/IOKitLib.h>
 #import <IOKit/hid/IOHIDKeys.h>
+#import <IOKit/hid/IOHIDLib.h>
+#import <Security/Security.h>
+#if __has_include(<IOKit/hidsystem/IOHIDLib.h>)
+#import <IOKit/hidsystem/IOHIDLib.h>
+#endif
 #import <dispatch/dispatch.h>
 #import <mach/mach_time.h>
 
@@ -74,6 +80,19 @@ bool bind_iokit_symbol(Function* destination, const char* name,
     return true;
 }
 
+template <typename Function>
+Function load_function_symbol(const char* name) {
+    static_assert(sizeof(Function) == sizeof(void*),
+                  "macOS function pointers must match data-pointer size");
+    dlerror();
+    void* symbol = dlsym(RTLD_DEFAULT, name);
+    const char* loader_error = dlerror();
+    if (!symbol || loader_error) return nullptr;
+    Function function = nullptr;
+    std::memcpy(&function, &symbol, sizeof(symbol));
+    return function;
+}
+
 HidUserDeviceApi load_hid_user_device_api() {
     HidUserDeviceApi api;
     if (!bind_iokit_symbol(&api.create_with_properties,
@@ -125,7 +144,122 @@ std::string io_error(IOReturn result) {
     return out.str();
 }
 
+using CGPreflightPostEventAccessFn = bool (*)();
+using CGRequestPostEventAccessFn = bool (*)();
+
+bool post_event_preflight() {
+    static CGPreflightPostEventAccessFn preflight =
+        load_function_symbol<CGPreflightPostEventAccessFn>("CGPreflightPostEventAccess");
+    if (preflight) return preflight();
+    return IOHIDCheckAccess(kIOHIDRequestTypePostEvent) == kIOHIDAccessTypeGranted;
+}
+
+bool post_event_request() {
+    static CGRequestPostEventAccessFn request =
+        load_function_symbol<CGRequestPostEventAccessFn>("CGRequestPostEventAccess");
+    if (request) return request();
+    return IOHIDRequestAccess(kIOHIDRequestTypePostEvent);
+}
+
+bool accessibility_trusted(bool prompt) {
+    if (AXIsProcessTrusted()) return true;
+    if (!prompt) return false;
+
+    const void* keys[] = { kAXTrustedCheckOptionPrompt };
+    const void* values[] = { kCFBooleanTrue };
+    CFDictionaryRef options = CFDictionaryCreate(
+        kCFAllocatorDefault, keys, values, 1,
+        &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+    const bool trusted = options ? AXIsProcessTrustedWithOptions(options)
+                                 : AXIsProcessTrusted();
+    if (options) CFRelease(options);
+    return trusted || AXIsProcessTrusted();
+}
+
+bool user_visible_output_permission_granted() {
+    return accessibility_trusted(false) || post_event_preflight();
+}
+
+bool restricted_virtual_hid_entitlement_visible() {
+    SecTaskRef task = SecTaskCreateFromSelf(kCFAllocatorDefault);
+    if (!task) return false;
+
+    CFTypeRef value = SecTaskCopyValueForEntitlement(
+        task, CFSTR("com.apple.developer.hid.virtual.device"), nullptr);
+    CFRelease(task);
+    if (!value) return false;
+
+    bool visible = false;
+    if (CFGetTypeID(value) == CFBooleanGetTypeID()) {
+        visible = CFBooleanGetValue(static_cast<CFBooleanRef>(value));
+    } else if (CFGetTypeID(value) == CFNumberGetTypeID()) {
+        int number = 0;
+        visible = CFNumberGetValue(static_cast<CFNumberRef>(value),
+                                   kCFNumberIntType, &number) && number != 0;
+    }
+    CFRelease(value);
+    return visible;
+}
+
 }  // namespace
+
+
+const char* virtual_hid_permission_status_name(VirtualHidPermissionStatus status) {
+    switch (status) {
+        case VirtualHidPermissionStatus::unsupported: return "unsupported";
+        case VirtualHidPermissionStatus::unknown: return "unknown";
+        case VirtualHidPermissionStatus::denied: return "denied";
+        case VirtualHidPermissionStatus::granted: return "granted";
+    }
+    return "unknown";
+}
+
+bool virtual_hid_accessibility_trusted() {
+    return user_visible_output_permission_granted();
+}
+
+bool virtual_hid_post_event_granted() {
+    return post_event_preflight();
+}
+
+bool virtual_hid_restricted_entitlement_visible() {
+    return restricted_virtual_hid_entitlement_visible();
+}
+
+VirtualHidPermissionStatus virtual_hid_permission_status() {
+    // The visible macOS privacy row for synthetic output is Accessibility, but
+    // newer systems expose the actual posting privilege through the
+    // CGPreflightPostEventAccess/CGRequestPostEventAccess pair. Treat either a
+    // positive AX trust check or a positive post-event preflight as granted, so
+    // the UI refreshes correctly after the user toggles the app in Settings.
+    if (user_visible_output_permission_granted()) {
+        return VirtualHidPermissionStatus::granted;
+    }
+
+    const IOHIDAccessType access = IOHIDCheckAccess(kIOHIDRequestTypePostEvent);
+    if (access == kIOHIDAccessTypeDenied) {
+        return VirtualHidPermissionStatus::denied;
+    }
+    return VirtualHidPermissionStatus::unknown;
+}
+
+bool request_virtual_hid_permission(std::string* error) {
+    if (virtual_hid_permission_status() == VirtualHidPermissionStatus::granted) {
+        return true;
+    }
+
+    // Kept for CLI/developer use. The AppKit UI does not call this path; it
+    // opens System Settings once and then re-checks when the app becomes active.
+    const bool requested = post_event_request() || accessibility_trusted(true);
+    if (requested || virtual_hid_permission_status() == VirtualHidPermissionStatus::granted) {
+        return true;
+    }
+
+    if (error) {
+        *error = "enable X360 Controller Bridge in Privacy & Security > Accessibility, then return to the app";
+    }
+    return false;
+}
 
 struct VirtualGamepad::Impl {
     std::size_t slot = 0;
@@ -146,6 +280,23 @@ VirtualGamepad::~VirtualGamepad() { destroy(); }
 
 bool VirtualGamepad::create(std::string* error) {
     if (impl_->device) return true;
+
+    if (!virtual_hid_restricted_entitlement_visible()) {
+        if (error) {
+            *error = "the running task does not expose com.apple.developer.hid.virtual.device. Sign with the restricted virtual-HID entitlement before testing user-space HID output";
+        }
+        return false;
+    }
+
+    // Do not open System Settings from the hot input path. The native UI shows
+    // a single Privacy row with an explicit System Settings button; creation
+    // simply reports a normal actionable error until the user grants access.
+    if (virtual_hid_permission_status() != VirtualHidPermissionStatus::granted) {
+        if (error) {
+            *error = "Accessibility approval required in Privacy & Security > Accessibility";
+        }
+        return false;
+    }
 
     const auto& api = hid_user_device_api();
     if (!api.available()) {
@@ -201,9 +352,13 @@ bool VirtualGamepad::create(std::string* error) {
     CFRelease(properties);
     if (!impl_->device) {
         if (error) {
-            *error = "IOHIDUserDevice creation failed. On current macOS this "
-                     "normally means the signed executable lacks the managed "
-                     "com.apple.developer.hid.virtual.device entitlement.";
+            *error = "IOHIDUserDevice creation failed. Grant X360 Controller "
+                     "Bridge in System Settings > Privacy & Security > "
+                     "Accessibility, then relaunch. If Accessibility is already "
+                     "enabled, the build likely still needs Apple's managed "
+                     "com.apple.developer.hid.virtual.device entitlement for "
+                     "the signing team; SIP/AMFI-disabled development Macs can "
+                     "use this user-space path for local testing.";
         }
         return false;
     }

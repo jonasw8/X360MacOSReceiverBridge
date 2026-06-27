@@ -3,10 +3,12 @@
 ## Goals
 
 - Read first-party and common third-party Xbox 360 wireless receivers without a kernel extension.
+- Add official wired Xbox 360 USB controller support without changing the normalized state model.
 - Keep all receiver/protocol logic independently testable.
-- Represent every connected receiver slot as a separate gamepad-like device.
-- Fail safely when virtual HID creation is unavailable.
-- Preserve a clean migration boundary for DriverKit.
+- Present a native, consumer-facing macOS app while preserving the CLI diagnostics.
+- Represent every connected wireless slot or wired controller as a separate gamepad-like device.
+- Show a single native privacy row when Accessibility approval is missing and fail safely when virtual HID creation is unavailable.
+- Preserve a clean migration boundary for CoreHID or DriverKit.
 
 ## Components
 
@@ -34,6 +36,19 @@ A libusb service that:
 8. serializes writes per slot.
 
 The default policy requires a known ID. `--usb-id` admits exactly one specified identity. `--allow-unknown` broadens matching only after the descriptor signature has been verified.
+
+### `wired_controller`
+
+A libusb service for wired Xbox 360 USB controllers. It:
+
+1. enumerates USB devices;
+2. accepts the official Microsoft wired-controller ID by default;
+3. can opt into protocol-matched third-party devices;
+4. claims the controller interface with interrupt IN and OUT endpoints;
+5. emits normalized `WiredControllerEvent` state callbacks;
+6. supports a direct rumble-test command.
+
+It shares the same `State` model as the wireless receiver path so the app and virtual HID backend do not need separate wired/wireless report code.
 
 ### `hid_report`
 
@@ -69,34 +84,55 @@ The default descriptor uses Generic Desktop / Joystick. `--gamepad-usage` change
 
 A narrow `IOHIDUserDevice` adapter:
 
+- checks the user-visible Accessibility grant before attempting virtual-device creation;
 - builds the property dictionary and report descriptor;
-- assigns a unique location/serial per receiver slot;
+- assigns a unique location/serial per virtual controller;
 - uses a serial dispatch queue;
 - registers the cancellation handler before activation;
 - sends a neutral report on creation and before teardown;
 - waits briefly for asynchronous cancellation without double-releasing the device.
 
-The adapter contains no receiver protocol logic. It can be replaced by CoreHID or DriverKit without changing packet parsing.
+The adapter contains no receiver or wired-controller protocol logic. It can be replaced by CoreHID or DriverKit without changing packet parsing.
+
+### `macos_app`
+
+The native AppKit app owns the consumer workflow:
+
+- main window with System Settings-style groups for bridge actions, privacy, receiver discovery, connected controllers, and status;
+- menu-bar extra with start/stop scanning, connected-controller summaries, rumble, disconnect, settings, and quit;
+- guided “Add Wireless Controller” and “Add Wired Controller” prompts;
+- detail windows with native live-input rows;
+- settings for scan-at-launch, menu-bar/background mode, raw logging, and SIP/AMFI-disabled development compatibility mode.
+
+The app starts the wireless receiver and wired controller services, creates `VirtualGamepad` objects on first state, and updates UI state from USB callbacks on the main queue.
 
 ### `main` / `Bridge`
 
-The CLI owns one `Receiver` and up to four `VirtualGamepad` objects. A connected event creates the slot's virtual device and sets a steady quadrant LED. A disconnect event destroys only that slot. State events are filtered, optionally logged, and submitted to the matching virtual device.
+The CLI remains available when command-line flags are supplied. It owns one `Receiver` and up to four `VirtualGamepad` objects. A connected event creates the slot's virtual device and sets a steady quadrant LED. A disconnect event destroys only that slot. State events are filtered, optionally logged, and submitted to the matching virtual device.
 
 ## Thread model
 
 ```text
-main thread
-  ├─ signal handling / lifecycle loop
-  ├─ optional command writes
-  └─ Bridge object and virtual-device ownership
+AppKit main thread
+  ├─ main window, menu-bar extra, settings, detail windows
+  ├─ privacy open/check actions
+  └─ UI refresh from USB callbacks
+
+scan timer / discovery queue
+  ├─ Receiver::discover
+  └─ WiredController::discover
 
 receiver read thread 0 ─┐
-receiver read thread 1 ─┼─ SlotEvent callback ─ mutex ─ per-slot state/device
+receiver read thread 1 ─┼─ SlotEvent callback ─ mutex ─ per-slot state/device ─ main-queue UI refresh
 receiver read thread 2 ─┤
 receiver read thread 3 ─┘
 
-per-slot HID dispatch queue
+wired read thread ─ WiredControllerEvent callback ─ mutex ─ wired state/device ─ main-queue UI refresh
+
+per-controller HID dispatch queue
   └─ IOHIDUserDevice lifecycle/cancel callbacks
+
+CLI mode uses the older single-threaded lifecycle loop when flags are passed to the app executable.
 ```
 
 libusb interrupt reads use a 250 ms timeout. This permits a clean `Control-C` stop without asynchronous transfer cancellation complexity. Receiver writes have a 1 second timeout and a per-interface mutex.
@@ -119,7 +155,8 @@ Receiver input is untrusted USB data. Defensive choices include:
 - ignoring well-formed but unknown payload types;
 - no dynamic allocation based on packet-supplied lengths;
 - exact/known ID matching by default;
-- no privileged helper, kext, or security-control modification.
+- compatibility/protocol matching only after an explicit user setting or CLI flag;
+- no privileged helper, kext, or security-control modification as a normal install step.
 
 ## Why a generic HID identity
 

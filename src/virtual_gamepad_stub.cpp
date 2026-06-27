@@ -4,6 +4,37 @@
 
 namespace x360bridge {
 
+const char* virtual_hid_permission_status_name(VirtualHidPermissionStatus status) {
+    switch (status) {
+        case VirtualHidPermissionStatus::unsupported: return "unsupported";
+        case VirtualHidPermissionStatus::unknown: return "unknown";
+        case VirtualHidPermissionStatus::denied: return "denied";
+        case VirtualHidPermissionStatus::granted: return "granted";
+    }
+    return "unknown";
+}
+
+VirtualHidPermissionStatus virtual_hid_permission_status() {
+    return VirtualHidPermissionStatus::unsupported;
+}
+
+bool virtual_hid_accessibility_trusted() {
+    return false;
+}
+
+bool virtual_hid_post_event_granted() {
+    return false;
+}
+
+bool virtual_hid_restricted_entitlement_visible() {
+    return false;
+}
+
+bool request_virtual_hid_permission(std::string* error) {
+    if (error) *error = "macOS HID post-event permission is unavailable on this platform";
+    return false;
+}
+
 struct VirtualGamepad::Impl {
     std::size_t slot = 0;
     VirtualGamepadOptions options;

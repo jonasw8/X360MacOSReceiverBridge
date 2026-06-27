@@ -9,6 +9,20 @@
 
 namespace x360bridge {
 
+enum class VirtualHidPermissionStatus {
+    unsupported,
+    unknown,
+    denied,
+    granted,
+};
+
+const char* virtual_hid_permission_status_name(VirtualHidPermissionStatus status);
+VirtualHidPermissionStatus virtual_hid_permission_status();
+bool virtual_hid_accessibility_trusted();
+bool virtual_hid_post_event_granted();
+bool virtual_hid_restricted_entitlement_visible();
+bool request_virtual_hid_permission(std::string* error = nullptr);
+
 struct VirtualGamepadOptions {
     HidOptions hid;
     // Deliberately generic prototype identity. Do not ship these values as a

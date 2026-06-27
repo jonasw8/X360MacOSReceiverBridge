@@ -309,7 +309,7 @@ void print_receivers() {
 
 }  // namespace
 
-int main(int argc, char** argv) {
+int x360bridge_cli_main(int argc, char** argv) {
     try {
         const Options options = parse_options(argc, argv);
         if (options.help) {
@@ -411,3 +411,9 @@ int main(int argc, char** argv) {
         return 1;
     }
 }
+
+#ifndef X360BRIDGE_APPKIT_MAIN
+int main(int argc, char** argv) {
+    return x360bridge_cli_main(argc, argv);
+}
+#endif

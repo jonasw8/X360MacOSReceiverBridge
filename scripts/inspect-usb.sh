@@ -9,4 +9,4 @@ echo "== IORegistry protocol-0x81 interface hints =="
 ioreg -p IOUSB -l -w 0 | grep -Ei 'Xbox|Wireless Receiver|bInterfaceProtocol|bInterfaceSubClass|idVendor|idProduct' || true
 
 echo
-echo "After building, use: build/x360receiverbridge.app/Contents/MacOS/x360receiverbridge --list"
+echo "After building, use: build/X360 Controller Bridge.app/Contents/MacOS/X360 Controller Bridge --list"

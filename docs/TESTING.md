@@ -27,7 +27,7 @@ Coverage includes:
 
 ```sh
 ./scripts/inspect-usb.sh
-APP="build/x360receiverbridge.app/Contents/MacOS/x360receiverbridge"
+APP="build/X360 Controller Bridge.app/Contents/MacOS/X360 Controller Bridge"
 "$APP" --list
 ```
 
@@ -41,6 +41,15 @@ Record:
 - number of matched controller interfaces.
 
 Expected common output includes four slots. Some descriptors or hub arrangements may differ, so save the complete `system_profiler SPUSBDataType` output when reporting a problem.
+
+
+## 2a. Native app smoke test
+
+```sh
+open "build/X360 Controller Bridge.app"
+```
+
+Check that the app opens a normal window, creates a menu-bar item, uses System Settings-style groups, hides disconnected controller slots, and offers **Add Wireless Controller**, **Add Wired Controller**, **Start Scanning**, and **Settings** without requiring Terminal. If Accessibility is already allowed, the Privacy row should not appear. Close the main window and confirm the app can continue from the menu bar when the background setting is enabled.
 
 ## 3. Raw packet capture
 
@@ -99,7 +108,7 @@ Only perform this with an executable signed using a profile that contains the ma
 
 ```sh
 codesign -d --entitlements :- \
-  build/x360receiverbridge.app 2>&1
+  "build/X360 Controller Bridge.app" 2>&1
 
 "$APP" --dump-state
 ```

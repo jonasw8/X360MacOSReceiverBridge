@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.22)
-project(X360ReceiverBridge VERSION 0.1.2 LANGUAGES CXX)
+project(X360ReceiverBridge VERSION 0.2.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -32,18 +32,32 @@ if(X360BRIDGE_BUILD_APP)
     set(X360BRIDGE_PLATFORM_SOURCE src/virtual_gamepad_stub.cpp)
     if(APPLE)
         enable_language(OBJCXX)
+        enable_language(Swift)
         set(X360BRIDGE_PLATFORM_SOURCE src/virtual_gamepad_macos.mm)
     else()
         message(STATUS
             "Building the USB decoder with a no-HID stub; virtual gamepad output is macOS-only")
     endif()
 
-    add_executable(x360receiverbridge
+    set(X360BRIDGE_APP_SOURCES
         src/main.cpp
         src/receiver.cpp
+        src/wired_controller.cpp
         ${X360BRIDGE_PLATFORM_SOURCE}
     )
-    target_include_directories(x360receiverbridge PRIVATE include)
+    if(APPLE)
+        list(APPEND X360BRIDGE_APP_SOURCES
+            src/macos_app.mm
+            src/DeveloperLabEnvironment.swift
+            src/X360DiagnosticDSUServer.swift
+            src/X360BridgeApp.swift
+        )
+    endif()
+
+    add_executable(x360receiverbridge
+        ${X360BRIDGE_APP_SOURCES}
+    )
+    target_include_directories(x360receiverbridge PRIVATE include src)
     target_link_libraries(x360receiverbridge PRIVATE
         x360_protocol
         Threads::Threads
@@ -55,18 +69,27 @@ if(X360BRIDGE_BUILD_APP)
 
     if(APPLE)
         set_target_properties(x360receiverbridge PROPERTIES
+            OUTPUT_NAME "X360 Controller Bridge"
             MACOSX_BUNDLE TRUE
             MACOSX_BUNDLE_INFO_PLIST "${CMAKE_SOURCE_DIR}/cmake/Info.plist.in"
-            MACOSX_BUNDLE_BUNDLE_NAME "X360ReceiverBridge"
+            MACOSX_BUNDLE_BUNDLE_NAME "X360 Controller Bridge"
             MACOSX_BUNDLE_GUI_IDENTIFIER "${X360BRIDGE_BUNDLE_IDENTIFIER}"
             MACOSX_BUNDLE_SHORT_VERSION_STRING "${PROJECT_VERSION}"
             MACOSX_BUNDLE_BUNDLE_VERSION "${PROJECT_VERSION}"
             MACOSX_BUNDLE_LONG_VERSION_STRING "${CMAKE_OSX_DEPLOYMENT_TARGET}"
         )
+        target_compile_definitions(x360receiverbridge PRIVATE
+            $<$<COMPILE_LANGUAGE:CXX>:X360BRIDGE_APPKIT_MAIN=1>
+            $<$<COMPILE_LANGUAGE:OBJCXX>:X360BRIDGE_APPKIT_MAIN=1>
+        )
         target_link_libraries(x360receiverbridge PRIVATE
+            "-framework AppKit"
+            "-framework ApplicationServices"
+            "-framework QuartzCore"
             "-framework IOKit"
             "-framework CoreFoundation"
             "-framework Foundation"
+            "-framework Security"
         )
         target_compile_options(x360receiverbridge PRIVATE
             $<$<COMPILE_LANGUAGE:OBJCXX>:-Wall;-Wextra;-Wpedantic;-fobjc-arc>
@@ -76,6 +99,10 @@ if(X360BRIDGE_BUILD_APP)
                 "${CMAKE_SOURCE_DIR}/entitlements/X360ReceiverBridge.entitlements"
             XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER
                 "${X360BRIDGE_BUNDLE_IDENTIFIER}"
+            Swift_LANGUAGE_VERSION 5
+        )
+        target_compile_options(x360receiverbridge PRIVATE
+            $<$<COMPILE_LANGUAGE:Swift>:-parse-as-library;-import-objc-header;${CMAKE_SOURCE_DIR}/src/X360Bridge-Bridging-Header.h>
         )
     endif()
 endif()

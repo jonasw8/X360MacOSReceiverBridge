@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.2.0
+
+- Added a native macOS AppKit interface with a main window, menu-bar controls,
+  guided wireless/wired controller add flows, System Settings-style controller
+  groups, detail windows, rumble testing, and disconnect actions.
+- Added wired Xbox 360 USB controller discovery and input decoding for the
+  official `045e:028e` controller, with opt-in protocol-match compatibility.
+- Added a user-space HID permission helper and changed the app UI to show one
+  native Privacy row only while Accessibility approval is missing.
+- Added a compatibility setting for locally signed development builds on
+  SIP/AMFI-disabled Macs without making weakened system security a normal
+  install step.
+- Changed the macOS bundle name to `X360 Controller Bridge.app` and added a
+  packaging helper that bundles `libusb`, signs locally, and writes a ZIP.
+- Updated the README and architecture notes for the consumer app flow.
+
 ## 0.1.2
 
 - Fixed Homebrew `libusb` compilation by including `<libusb.h>` from the
