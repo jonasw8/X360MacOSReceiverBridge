@@ -31,4 +31,4 @@ jobs:
       - name: Test
         run: ctest --test-dir build --output-on-failure
       - name: Smoke-test CLI
-        run: build/x360receiverbridge.app/Contents/MacOS/x360receiverbridge --help
+        run: "build/X360 Controller Bridge.app/Contents/MacOS/X360 Controller Bridge" --help
