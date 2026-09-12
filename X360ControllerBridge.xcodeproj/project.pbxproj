@@ -160,7 +160,6 @@
 		8F275FB29E4BDB34D4428956 = {
 			isa = PBXGroup;
 			children = (
-				DD1252EA3055B86E0085F82C /* Assets.xcassets */,
 				F2045C25DD670B19214769B4 /* src */,
 				247738128FEAB9FDD03E991E /* include */,
 				1B611EBF352F10AC549F9C26 /* Vendor */,
@@ -189,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				E99EE4056AD1E85B0B98E4E1 /* Localizable.xcstrings */,
+				DD1252EA3055B86E0085F82C /* Assets.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -281,7 +281,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastUpgradeCheck = 1600;
+				LastUpgradeCheck = 2630;
 			};
 			buildConfigurationList = 16756166711BF8EB847D27A3 /* Build configuration list for PBXProject "X360ControllerBridge" */;
 			compatibilityVersion = "Xcode 14.0";
@@ -348,12 +348,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 			};
 			name = Debug;
 		};
@@ -371,7 +373,9 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_RESOURCE_ACCESS_USB = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"X360BRIDGE_APPKIT_MAIN=1",
@@ -386,6 +390,7 @@
 				INFOPLIST_FILE = Xcode/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 0.2.0;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				PRODUCT_BUNDLE_IDENTIFIER = org.x360receiverbridge.app;
 				PRODUCT_NAME = "X360 Controller Bridge";
 				SDKROOT = macosx;
@@ -398,12 +403,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 			};
 			name = Release;
 		};
@@ -421,7 +428,9 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_RESOURCE_ACCESS_USB = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"X360BRIDGE_APPKIT_MAIN=1",
@@ -436,6 +445,7 @@
 				INFOPLIST_FILE = Xcode/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 0.2.0;
+				NEW_SETTING = "ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon";
 				PRODUCT_BUNDLE_IDENTIFIER = org.x360receiverbridge.app;
 				PRODUCT_NAME = "X360 Controller Bridge";
 				SDKROOT = macosx;

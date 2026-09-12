@@ -104,6 +104,40 @@ if(X360BRIDGE_BUILD_APP)
         target_compile_options(x360receiverbridge PRIVATE
             $<$<COMPILE_LANGUAGE:Swift>:-parse-as-library;-import-objc-header;${CMAKE_SOURCE_DIR}/src/X360Bridge-Bridging-Header.h>
         )
+        # CMake's Ninja/Makefiles generators (unlike Xcode's own build system)
+        # do not know how to process .xcassets asset catalogs, so without this
+        # step Assets.xcassets is never compiled and the app bundle ends up
+        # with no AppIcon at all. Compile it explicitly with actool and drop
+        # the result into the bundle right after the executable is linked.
+        find_program(X360BRIDGE_ACTOOL actool)
+        if(NOT X360BRIDGE_ACTOOL)
+            execute_process(
+                COMMAND xcrun --find actool
+                OUTPUT_VARIABLE X360BRIDGE_ACTOOL
+                OUTPUT_STRIP_TRAILING_WHITESPACE
+                ERROR_QUIET
+            )
+        endif()
+        if(X360BRIDGE_ACTOOL)
+            add_custom_command(TARGET x360receiverbridge POST_BUILD
+                COMMAND ${CMAKE_COMMAND} -E make_directory
+                    "$<TARGET_BUNDLE_CONTENT_DIR:x360receiverbridge>/Resources"
+                COMMAND "${X360BRIDGE_ACTOOL}"
+                    "${CMAKE_SOURCE_DIR}/Resources/Assets.xcassets"
+                    --compile "$<TARGET_BUNDLE_CONTENT_DIR:x360receiverbridge>/Resources"
+                    --platform macosx
+                    --minimum-deployment-target "${CMAKE_OSX_DEPLOYMENT_TARGET}"
+                    --app-icon AppIcon
+                    --output-partial-info-plist
+                        "${CMAKE_CURRENT_BINARY_DIR}/AssetCatalogPartialInfo.plist"
+                COMMENT "Compiling Assets.xcassets (App Icon) with actool"
+                VERBATIM
+            )
+        else()
+            message(WARNING
+                "actool (Xcode Command Line Tools) not found - the app bundle "
+                "will be built without a compiled AppIcon asset catalog")
+        endif()
     endif()
 endif()
 
