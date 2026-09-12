@@ -1,269 +1,471 @@
 // !$*UTF8*$!
 {
 	archiveVersion = 1;
-	classes = {};
+	classes = {
+	};
 	objectVersion = 56;
 	objects = {
+
 /* Begin PBXBuildFile section */
-D6C07FD66CDB998942EE6497 = {isa = PBXBuildFile; fileRef = 0B9C7CA98C2F3EBB5D2DFCDD; };
-5F34324C67370134BB8B2B9D = {isa = PBXBuildFile; fileRef = 6DFA01DE017EA7CF211D4733; };
-EF2D3647EBDB4305E63B2975 = {isa = PBXBuildFile; fileRef = 513031F1C7960091F7065ECE; };
-331F5E79E4FFAD666EDAF724 = {isa = PBXBuildFile; fileRef = FEE5DB5B27422E323B4D7FFB; };
-FDFF313C1E5B16FA5D09F7D2 = {isa = PBXBuildFile; fileRef = 9CCEC2AD616108E746566C4F; };
-57B4AB9AB2CAD13691B6125E = {isa = PBXBuildFile; fileRef = 2536A328A819E3C519042EDE; };
-2525D77169BBDEFC045E936E = {isa = PBXBuildFile; fileRef = 64700AB15C780879FEE4435C; };
-55C5E90072FD92024DC1715E = {isa = PBXBuildFile; fileRef = 78273060C1CA440203D0DBE5; };
-99AB0A4983D812EF59266047 = {isa = PBXBuildFile; fileRef = 89EE1147ADAE59792C7BDB54; };
-8095C899D74367A8E6671795 = {isa = PBXBuildFile; fileRef = F39869E258E67CEFD98FF454; };
-0156CCEB567D0ACE4AA9B67C = {isa = PBXBuildFile; fileRef = D78E0CAB50D1A292C2025CEA; };
-902E1D461B9091AA7DB8095B = {isa = PBXBuildFile; fileRef = 3D102EB8AB9F1673DF86293F; };
-5853BFF8C994DEEA194767C8 = {isa = PBXBuildFile; fileRef = AB15610F38EF4D737616A880; };
-DAF4FF6624969CAB73597180 = {isa = PBXBuildFile; fileRef = 5131DDE94A465DCA9EC1993B; };
-E0ABDE2CC5CA71383AAE2BBE = {isa = PBXBuildFile; fileRef = FE904E5CAEC50023D29E5B3D; };
-661805416EBC713C1CF7A50F = {isa = PBXBuildFile; fileRef = 94B2FCAA94C6839B05D51EBC; };
-D189D46B6A1D9553A7F5FAAE = {isa = PBXBuildFile; fileRef = 23034B634FB6CBA33DA39FFE; };
-342589198C4FFA72D1386281 = {isa = PBXBuildFile; fileRef = 589468F4B68056FF15416D0D; };
-959225FEA6720619EBFBBA9B = {isa = PBXBuildFile; fileRef = D995C76DF0F21FE5C58F484E; };
-C829ED4BC8C5A28ED840373D = {isa = PBXBuildFile; fileRef = 0E138288FDFB41AA69FB846F; };
-BC032C5BCD060D617142A3CE = {isa = PBXBuildFile; fileRef = 2A5E580ADED29B1F7E30234E; };
-8DBACB4151BC4F1BF0BA7207 = {isa = PBXBuildFile; fileRef = 3F78DE5D79A031D30D7A7452; };
-AD770E7D79BE7BF87950A56F = {isa = PBXBuildFile; fileRef = 3D8C00B892B59428E74C7645; };
-471540E4D8F01AAD38D12724 = {isa = PBXBuildFile; fileRef = E4EF81E7BF18D939B32862B2; };
-393102CFF3820252BDD4305B = {isa = PBXBuildFile; fileRef = 1B25BE1F516785A717DF4119; };
-0B569F79527287251851AB36 = {isa = PBXBuildFile; fileRef = C2EBA3055F909472CF775531; };
-5FF96CD988ADA4402023BB1E = {isa = PBXBuildFile; fileRef = E99EE4056AD1E85B0B98E4E1; };
+		0156CCEB567D0ACE4AA9B67C /* core.c in Sources */ = {isa = PBXBuildFile; fileRef = D78E0CAB50D1A292C2025CEA /* core.c */; };
+		0B569F79527287251851AB36 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2EBA3055F909472CF775531 /* Security.framework */; };
+		2525D77169BBDEFC045E936E /* macos_app.mm in Sources */ = {isa = PBXBuildFile; fileRef = 64700AB15C780879FEE4435C /* macos_app.mm */; };
+		331F5E79E4FFAD666EDAF724 /* receiver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FEE5DB5B27422E323B4D7FFB /* receiver.cpp */; };
+		342589198C4FFA72D1386281 /* events_posix.c in Sources */ = {isa = PBXBuildFile; fileRef = 589468F4B68056FF15416D0D /* events_posix.c */; };
+		393102CFF3820252BDD4305B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B25BE1F516785A717DF4119 /* Foundation.framework */; };
+		471540E4D8F01AAD38D12724 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4EF81E7BF18D939B32862B2 /* CoreFoundation.framework */; };
+		55C5E90072FD92024DC1715E /* DeveloperLabEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78273060C1CA440203D0DBE5 /* DeveloperLabEnvironment.swift */; };
+		57B4AB9AB2CAD13691B6125E /* virtual_gamepad_macos.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2536A328A819E3C519042EDE /* virtual_gamepad_macos.mm */; };
+		5853BFF8C994DEEA194767C8 /* hotplug.c in Sources */ = {isa = PBXBuildFile; fileRef = AB15610F38EF4D737616A880 /* hotplug.c */; };
+		5F34324C67370134BB8B2B9D /* protocol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DFA01DE017EA7CF211D4733 /* protocol.cpp */; };
+		5FF96CD988ADA4402023BB1E /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E99EE4056AD1E85B0B98E4E1 /* Localizable.xcstrings */; };
+		661805416EBC713C1CF7A50F /* sync.c in Sources */ = {isa = PBXBuildFile; fileRef = 94B2FCAA94C6839B05D51EBC /* sync.c */; };
+		8095C899D74367A8E6671795 /* X360BridgeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39869E258E67CEFD98FF454 /* X360BridgeApp.swift */; };
+		8DBACB4151BC4F1BF0BA7207 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F78DE5D79A031D30D7A7452 /* QuartzCore.framework */; };
+		902E1D461B9091AA7DB8095B /* descriptor.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D102EB8AB9F1673DF86293F /* descriptor.c */; };
+		959225FEA6720619EBFBBA9B /* threads_posix.c in Sources */ = {isa = PBXBuildFile; fileRef = D995C76DF0F21FE5C58F484E /* threads_posix.c */; };
+		99AB0A4983D812EF59266047 /* X360DiagnosticDSUServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89EE1147ADAE59792C7BDB54 /* X360DiagnosticDSUServer.swift */; };
+		AD770E7D79BE7BF87950A56F /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D8C00B892B59428E74C7645 /* IOKit.framework */; };
+		BC032C5BCD060D617142A3CE /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A5E580ADED29B1F7E30234E /* ApplicationServices.framework */; };
+		C829ED4BC8C5A28ED840373D /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E138288FDFB41AA69FB846F /* AppKit.framework */; };
+		D189D46B6A1D9553A7F5FAAE /* darwin_usb.c in Sources */ = {isa = PBXBuildFile; fileRef = 23034B634FB6CBA33DA39FFE /* darwin_usb.c */; };
+		D6C07FD66CDB998942EE6497 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0B9C7CA98C2F3EBB5D2DFCDD /* main.cpp */; };
+		DAF4FF6624969CAB73597180 /* io.c in Sources */ = {isa = PBXBuildFile; fileRef = 5131DDE94A465DCA9EC1993B /* io.c */; };
+		DD1252EB3055B86E0085F82C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD1252EA3055B86E0085F82C /* Assets.xcassets */; };
+		E0ABDE2CC5CA71383AAE2BBE /* strerror.c in Sources */ = {isa = PBXBuildFile; fileRef = FE904E5CAEC50023D29E5B3D /* strerror.c */; };
+		EF2D3647EBDB4305E63B2975 /* hid_report.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 513031F1C7960091F7065ECE /* hid_report.cpp */; };
+		FDFF313C1E5B16FA5D09F7D2 /* wired_controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CCEC2AD616108E746566C4F /* wired_controller.cpp */; };
 /* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
-0B9C7CA98C2F3EBB5D2DFCDD = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "main.cpp"; sourceTree = "<group>"; };
-6DFA01DE017EA7CF211D4733 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "protocol.cpp"; sourceTree = "<group>"; };
-513031F1C7960091F7065ECE = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "hid_report.cpp"; sourceTree = "<group>"; };
-FEE5DB5B27422E323B4D7FFB = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "receiver.cpp"; sourceTree = "<group>"; };
-9CCEC2AD616108E746566C4F = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "wired_controller.cpp"; sourceTree = "<group>"; };
-2536A328A819E3C519042EDE = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "virtual_gamepad_macos.mm"; sourceTree = "<group>"; };
-64700AB15C780879FEE4435C = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "macos_app.mm"; sourceTree = "<group>"; };
-78273060C1CA440203D0DBE5 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeveloperLabEnvironment.swift"; sourceTree = "<group>"; };
-89EE1147ADAE59792C7BDB54 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "X360DiagnosticDSUServer.swift"; sourceTree = "<group>"; };
-F39869E258E67CEFD98FF454 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "X360BridgeApp.swift"; sourceTree = "<group>"; };
-082FE209AD169ED4EFAE0405 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "protocol.hpp"; sourceTree = "<group>"; };
-80332BE503A6D6D977C4DA77 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "hid_report.hpp"; sourceTree = "<group>"; };
-CAF1A737985231C236D9C39A = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "receiver.hpp"; sourceTree = "<group>"; };
-FD890DC9D7E2AE4696B9109E = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "wired_controller.hpp"; sourceTree = "<group>"; };
-764CFB6ACC3C27FB8EE2DED7 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "virtual_gamepad.hpp"; sourceTree = "<group>"; };
-D3C3EF881C43200E4E7185DF = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "X360BridgeManager.h"; sourceTree = "<group>"; };
-300C35F1DCF57F0D8A73E0E7 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "X360Bridge-Bridging-Header.h"; sourceTree = "<group>"; };
-D78E0CAB50D1A292C2025CEA = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "core.c"; sourceTree = "<group>"; };
-3D102EB8AB9F1673DF86293F = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "descriptor.c"; sourceTree = "<group>"; };
-AB15610F38EF4D737616A880 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "hotplug.c"; sourceTree = "<group>"; };
-5131DDE94A465DCA9EC1993B = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "io.c"; sourceTree = "<group>"; };
-FE904E5CAEC50023D29E5B3D = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "strerror.c"; sourceTree = "<group>"; };
-94B2FCAA94C6839B05D51EBC = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "sync.c"; sourceTree = "<group>"; };
-23034B634FB6CBA33DA39FFE = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "darwin_usb.c"; sourceTree = "<group>"; };
-589468F4B68056FF15416D0D = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "events_posix.c"; sourceTree = "<group>"; };
-D995C76DF0F21FE5C58F484E = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "threads_posix.c"; sourceTree = "<group>"; };
-F5AC5A503AE86432ACCE43AA = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "libusb.h"; sourceTree = "<group>"; };
-525902FD6DA8D3AA78A297DD = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "libusbi.h"; sourceTree = "<group>"; };
-E17AF28CF23344E42127AB62 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "version.h"; sourceTree = "<group>"; };
-3EE8C7F04413C7D53E415E04 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "version_nano.h"; sourceTree = "<group>"; };
-CAAB3617A3D61D8ADB28358D = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "darwin_usb.h"; sourceTree = "<group>"; };
-02E0773B17E911C8C7CC0770 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "events_posix.h"; sourceTree = "<group>"; };
-F0540D116881064D42B69975 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "threads_posix.h"; sourceTree = "<group>"; };
-CFA309F3F5454B6983C6973C = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "config.h"; sourceTree = "<group>"; };
-0318B85E92FDCB554074BD17 = {isa = PBXFileReference; lastKnownFileType = text; path = "COPYING"; sourceTree = "<group>"; };
-0E138288FDFB41AA69FB846F = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-2A5E580ADED29B1F7E30234E = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
-3F78DE5D79A031D30D7A7452 = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-3D8C00B892B59428E74C7645 = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
-E4EF81E7BF18D939B32862B2 = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
-1B25BE1F516785A717DF4119 = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-C2EBA3055F909472CF775531 = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-1C0E0D5CE39FFC30FF99DB33 = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-C84F5A415C4E959E2CC4F7AA = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = X360ReceiverBridge.entitlements; sourceTree = "<group>"; };
-964BD5656C7A016EF0C9ADA7 = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "X360 Controller Bridge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-E99EE4056AD1E85B0B98E4E1 = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		02E0773B17E911C8C7CC0770 /* events_posix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = events_posix.h; sourceTree = "<group>"; };
+		0318B85E92FDCB554074BD17 /* COPYING */ = {isa = PBXFileReference; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
+		082FE209AD169ED4EFAE0405 /* protocol.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = protocol.hpp; sourceTree = "<group>"; };
+		0B9C7CA98C2F3EBB5D2DFCDD /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		0E138288FDFB41AA69FB846F /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		1B25BE1F516785A717DF4119 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1C0E0D5CE39FFC30FF99DB33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		23034B634FB6CBA33DA39FFE /* darwin_usb.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = darwin_usb.c; sourceTree = "<group>"; };
+		2536A328A819E3C519042EDE /* virtual_gamepad_macos.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = virtual_gamepad_macos.mm; sourceTree = "<group>"; };
+		2A5E580ADED29B1F7E30234E /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
+		300C35F1DCF57F0D8A73E0E7 /* X360Bridge-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "X360Bridge-Bridging-Header.h"; sourceTree = "<group>"; };
+		3D102EB8AB9F1673DF86293F /* descriptor.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = descriptor.c; sourceTree = "<group>"; };
+		3D8C00B892B59428E74C7645 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		3EE8C7F04413C7D53E415E04 /* version_nano.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = version_nano.h; sourceTree = "<group>"; };
+		3F78DE5D79A031D30D7A7452 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		513031F1C7960091F7065ECE /* hid_report.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = hid_report.cpp; sourceTree = "<group>"; };
+		5131DDE94A465DCA9EC1993B /* io.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = io.c; sourceTree = "<group>"; };
+		525902FD6DA8D3AA78A297DD /* libusbi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = libusbi.h; sourceTree = "<group>"; };
+		589468F4B68056FF15416D0D /* events_posix.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = events_posix.c; sourceTree = "<group>"; };
+		64700AB15C780879FEE4435C /* macos_app.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = macos_app.mm; sourceTree = "<group>"; };
+		6DFA01DE017EA7CF211D4733 /* protocol.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = protocol.cpp; sourceTree = "<group>"; };
+		764CFB6ACC3C27FB8EE2DED7 /* virtual_gamepad.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = virtual_gamepad.hpp; sourceTree = "<group>"; };
+		78273060C1CA440203D0DBE5 /* DeveloperLabEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperLabEnvironment.swift; sourceTree = "<group>"; };
+		80332BE503A6D6D977C4DA77 /* hid_report.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = hid_report.hpp; sourceTree = "<group>"; };
+		89EE1147ADAE59792C7BDB54 /* X360DiagnosticDSUServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = X360DiagnosticDSUServer.swift; sourceTree = "<group>"; };
+		94B2FCAA94C6839B05D51EBC /* sync.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = sync.c; sourceTree = "<group>"; };
+		964BD5656C7A016EF0C9ADA7 /* X360 Controller Bridge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "X360 Controller Bridge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9CCEC2AD616108E746566C4F /* wired_controller.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = wired_controller.cpp; sourceTree = "<group>"; };
+		AB15610F38EF4D737616A880 /* hotplug.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = hotplug.c; sourceTree = "<group>"; };
+		C2EBA3055F909472CF775531 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		C84F5A415C4E959E2CC4F7AA /* X360ReceiverBridge.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = X360ReceiverBridge.entitlements; sourceTree = "<group>"; };
+		CAAB3617A3D61D8ADB28358D /* darwin_usb.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = darwin_usb.h; sourceTree = "<group>"; };
+		CAF1A737985231C236D9C39A /* receiver.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = receiver.hpp; sourceTree = "<group>"; };
+		CFA309F3F5454B6983C6973C /* config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		D3C3EF881C43200E4E7185DF /* X360BridgeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = X360BridgeManager.h; sourceTree = "<group>"; };
+		D78E0CAB50D1A292C2025CEA /* core.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = core.c; sourceTree = "<group>"; };
+		D995C76DF0F21FE5C58F484E /* threads_posix.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = threads_posix.c; sourceTree = "<group>"; };
+		DD1252EA3055B86E0085F82C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E17AF28CF23344E42127AB62 /* version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
+		E4EF81E7BF18D939B32862B2 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		E99EE4056AD1E85B0B98E4E1 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		F0540D116881064D42B69975 /* threads_posix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = threads_posix.h; sourceTree = "<group>"; };
+		F39869E258E67CEFD98FF454 /* X360BridgeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = X360BridgeApp.swift; sourceTree = "<group>"; };
+		F5AC5A503AE86432ACCE43AA /* libusb.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = libusb.h; sourceTree = "<group>"; };
+		FD890DC9D7E2AE4696B9109E /* wired_controller.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = wired_controller.hpp; sourceTree = "<group>"; };
+		FE904E5CAEC50023D29E5B3D /* strerror.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = strerror.c; sourceTree = "<group>"; };
+		FEE5DB5B27422E323B4D7FFB /* receiver.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = receiver.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-913A8D789853031603D33BA2 = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (
-C829ED4BC8C5A28ED840373D,
-BC032C5BCD060D617142A3CE,
-8DBACB4151BC4F1BF0BA7207,
-AD770E7D79BE7BF87950A56F,
-471540E4D8F01AAD38D12724,
-393102CFF3820252BDD4305B,
-0B569F79527287251851AB36,
-); runOnlyForDeploymentPostprocessing = 0; };
-8F275FB29E4BDB34D4428956 = {isa = PBXGroup; children = (
-F2045C25DD670B19214769B4,
-247738128FEAB9FDD03E991E,
-1B611EBF352F10AC549F9C26,
-F12906FE3CD838BC0C0165DF,
-9ED1EAF1ED0EF43A245CFD63,
-FFE67B5873BFAC2387F030BC,
-A0BAF3E0707342D3C0AEACEE,
-); sourceTree = "<group>"; };
-F2045C25DD670B19214769B4 = {isa = PBXGroup; path = "src"; children = (
-0B9C7CA98C2F3EBB5D2DFCDD,
-6DFA01DE017EA7CF211D4733,
-513031F1C7960091F7065ECE,
-FEE5DB5B27422E323B4D7FFB,
-9CCEC2AD616108E746566C4F,
-2536A328A819E3C519042EDE,
-64700AB15C780879FEE4435C,
-78273060C1CA440203D0DBE5,
-89EE1147ADAE59792C7BDB54,
-F39869E258E67CEFD98FF454,
-D3C3EF881C43200E4E7185DF,
-300C35F1DCF57F0D8A73E0E7,
-); sourceTree = "<group>"; };
-247738128FEAB9FDD03E991E = {isa = PBXGroup; path = "include"; children = (
-EFB6727D186290753ABA195F,
-); sourceTree = "<group>"; };
-EFB6727D186290753ABA195F = {isa = PBXGroup; path = "x360bridge"; children = (
-082FE209AD169ED4EFAE0405,
-80332BE503A6D6D977C4DA77,
-CAF1A737985231C236D9C39A,
-FD890DC9D7E2AE4696B9109E,
-764CFB6ACC3C27FB8EE2DED7,
-); sourceTree = "<group>"; };
-1B611EBF352F10AC549F9C26 = {isa = PBXGroup; path = "Vendor"; children = (
-571C8ABBA62ED156922B53D3,
-); sourceTree = "<group>"; };
-571C8ABBA62ED156922B53D3 = {isa = PBXGroup; path = "libusb"; children = (
-51BCACC3607EAB368EADB111,
-095669A7984317CB79074170,
-0318B85E92FDCB554074BD17,
-); sourceTree = "<group>"; };
-51BCACC3607EAB368EADB111 = {isa = PBXGroup; path = "libusb"; children = (
-D78E0CAB50D1A292C2025CEA,
-3D102EB8AB9F1673DF86293F,
-AB15610F38EF4D737616A880,
-5131DDE94A465DCA9EC1993B,
-FE904E5CAEC50023D29E5B3D,
-94B2FCAA94C6839B05D51EBC,
-F5AC5A503AE86432ACCE43AA,
-525902FD6DA8D3AA78A297DD,
-E17AF28CF23344E42127AB62,
-3EE8C7F04413C7D53E415E04,
-A4FA8EB55DA7CDA23135297C,
-); sourceTree = "<group>"; };
-A4FA8EB55DA7CDA23135297C = {isa = PBXGroup; path = "os"; children = (
-23034B634FB6CBA33DA39FFE,
-589468F4B68056FF15416D0D,
-D995C76DF0F21FE5C58F484E,
-CAAB3617A3D61D8ADB28358D,
-02E0773B17E911C8C7CC0770,
-F0540D116881064D42B69975,
-); sourceTree = "<group>"; };
-095669A7984317CB79074170 = {isa = PBXGroup; path = "Xcode"; children = (
-CFA309F3F5454B6983C6973C,
-); sourceTree = "<group>"; };
-F12906FE3CD838BC0C0165DF = {isa = PBXGroup; name = "Xcode Support"; children = (
-1C0E0D5CE39FFC30FF99DB33,
-C84F5A415C4E959E2CC4F7AA,
-); sourceTree = "<group>"; };
-9ED1EAF1ED0EF43A245CFD63 = {isa = PBXGroup; name = "Frameworks"; children = (
-0E138288FDFB41AA69FB846F,
-2A5E580ADED29B1F7E30234E,
-3F78DE5D79A031D30D7A7452,
-3D8C00B892B59428E74C7645,
-E4EF81E7BF18D939B32862B2,
-1B25BE1F516785A717DF4119,
-C2EBA3055F909472CF775531,
-); sourceTree = "<group>"; };
-FFE67B5873BFAC2387F030BC = {isa = PBXGroup; name = "Products"; children = (
-964BD5656C7A016EF0C9ADA7,
-); sourceTree = "<group>"; };
-A0BAF3E0707342D3C0AEACEE = {isa = PBXGroup; path = Resources; children = (E99EE4056AD1E85B0B98E4E1,); sourceTree = "<group>"; };
-84A1ADBEE1321BC20135C0D8 = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (5FF96CD988ADA4402023BB1E,); runOnlyForDeploymentPostprocessing = 0; };
-F762108CA727F0BCD961FC74 = {isa = PBXNativeTarget; buildConfigurationList = 0EE5D24F4D949B96CAFE43AA; buildPhases = (CBE1FEED5CD18DD4A4CCC0A6,913A8D789853031603D33BA2,84A1ADBEE1321BC20135C0D8); buildRules = (); dependencies = (); name = "X360 Controller Bridge"; productName = "X360 Controller Bridge"; productReference = 964BD5656C7A016EF0C9ADA7; productType = "com.apple.product-type.application"; };
-16EEAF57BAFC2A41CAB7C99A = {isa = PBXProject; attributes = {BuildIndependentTargetsInParallel = 1; LastUpgradeCheck = 1600;}; buildConfigurationList = 16756166711BF8EB847D27A3; compatibilityVersion = "Xcode 14.0"; developmentRegion = en; knownRegions = (en, "pt-BR", Base); mainGroup = 8F275FB29E4BDB34D4428956; productRefGroup = FFE67B5873BFAC2387F030BC; projectDirPath = ""; projectRoot = ""; targets = (F762108CA727F0BCD961FC74); };
-CBE1FEED5CD18DD4A4CCC0A6 = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (
-D6C07FD66CDB998942EE6497,
-5F34324C67370134BB8B2B9D,
-EF2D3647EBDB4305E63B2975,
-331F5E79E4FFAD666EDAF724,
-FDFF313C1E5B16FA5D09F7D2,
-57B4AB9AB2CAD13691B6125E,
-2525D77169BBDEFC045E936E,
-55C5E90072FD92024DC1715E,
-99AB0A4983D812EF59266047,
-8095C899D74367A8E6671795,
-0156CCEB567D0ACE4AA9B67C,
-902E1D461B9091AA7DB8095B,
-5853BFF8C994DEEA194767C8,
-DAF4FF6624969CAB73597180,
-E0ABDE2CC5CA71383AAE2BBE,
-661805416EBC713C1CF7A50F,
-D189D46B6A1D9553A7F5FAAE,
-342589198C4FFA72D1386281,
-959225FEA6720619EBFBBA9B,
-); runOnlyForDeploymentPostprocessing = 0; };
-4F3CEE106E92F4D69824C96E = {isa = XCBuildConfiguration; buildSettings = {
-ALWAYS_SEARCH_USER_PATHS = "NO";
-CLANG_CXX_LANGUAGE_STANDARD = "c++17";
-CLANG_CXX_LIBRARY = "libc++";
-CLANG_ENABLE_MODULES = "YES";
-CLANG_ENABLE_OBJC_ARC = "YES";
-MACOSX_DEPLOYMENT_TARGET = "13.0";
-SDKROOT = "macosx";
-}; name = Debug; };
-F843D9B6C00A726D1702C70C = {isa = XCBuildConfiguration; buildSettings = {
-ALWAYS_SEARCH_USER_PATHS = "NO";
-CLANG_CXX_LANGUAGE_STANDARD = "c++17";
-CLANG_CXX_LIBRARY = "libc++";
-CLANG_ENABLE_MODULES = "YES";
-CLANG_ENABLE_OBJC_ARC = "YES";
-MACOSX_DEPLOYMENT_TARGET = "13.0";
-SDKROOT = "macosx";
-}; name = Release; };
-CC334CDC30E9F4C82541D54E = {isa = XCBuildConfiguration; buildSettings = {
-ALWAYS_SEARCH_USER_PATHS = "NO";
-CLANG_CXX_LANGUAGE_STANDARD = "c++17";
-CLANG_CXX_LIBRARY = "libc++";
-CLANG_ENABLE_MODULES = "YES";
-CLANG_ENABLE_OBJC_ARC = "YES";
-MACOSX_DEPLOYMENT_TARGET = "13.0";
-SDKROOT = "macosx";
-CODE_SIGN_ENTITLEMENTS = "entitlements/X360ReceiverBridge.entitlements";
-CODE_SIGN_IDENTITY = "-";
-CODE_SIGN_STYLE = "Manual";
-COMBINE_HIDPI_IMAGES = "YES";
-CURRENT_PROJECT_VERSION = "1";
-DEAD_CODE_STRIPPING = "YES";
-ENABLE_HARDENED_RUNTIME = "YES";
-GCC_PREPROCESSOR_DEFINITIONS = "$(inherited) X360BRIDGE_APPKIT_MAIN=1";
-HEADER_SEARCH_PATHS = "$(inherited) $(PROJECT_DIR)/include $(PROJECT_DIR)/Vendor/libusb/libusb $(PROJECT_DIR)/Vendor/libusb/libusb/os $(PROJECT_DIR)/Vendor/libusb/Xcode";
-INFOPLIST_FILE = "Xcode/Info.plist";
-MARKETING_VERSION = "0.2.0";
-PRODUCT_BUNDLE_IDENTIFIER = "org.x360receiverbridge.app";
-PRODUCT_NAME = "X360 Controller Bridge";
-SWIFT_OBJC_BRIDGING_HEADER = "src/X360Bridge-Bridging-Header.h";
-SWIFT_VERSION = "5.0";
-}; name = Debug; };
-F9C744E8C0ECB712753E6342 = {isa = XCBuildConfiguration; buildSettings = {
-ALWAYS_SEARCH_USER_PATHS = "NO";
-CLANG_CXX_LANGUAGE_STANDARD = "c++17";
-CLANG_CXX_LIBRARY = "libc++";
-CLANG_ENABLE_MODULES = "YES";
-CLANG_ENABLE_OBJC_ARC = "YES";
-MACOSX_DEPLOYMENT_TARGET = "13.0";
-SDKROOT = "macosx";
-CODE_SIGN_ENTITLEMENTS = "entitlements/X360ReceiverBridge.entitlements";
-CODE_SIGN_IDENTITY = "-";
-CODE_SIGN_STYLE = "Manual";
-COMBINE_HIDPI_IMAGES = "YES";
-CURRENT_PROJECT_VERSION = "1";
-DEAD_CODE_STRIPPING = "YES";
-ENABLE_HARDENED_RUNTIME = "YES";
-GCC_PREPROCESSOR_DEFINITIONS = "$(inherited) X360BRIDGE_APPKIT_MAIN=1";
-HEADER_SEARCH_PATHS = "$(inherited) $(PROJECT_DIR)/include $(PROJECT_DIR)/Vendor/libusb/libusb $(PROJECT_DIR)/Vendor/libusb/libusb/os $(PROJECT_DIR)/Vendor/libusb/Xcode";
-INFOPLIST_FILE = "Xcode/Info.plist";
-MARKETING_VERSION = "0.2.0";
-PRODUCT_BUNDLE_IDENTIFIER = "org.x360receiverbridge.app";
-PRODUCT_NAME = "X360 Controller Bridge";
-SWIFT_OBJC_BRIDGING_HEADER = "src/X360Bridge-Bridging-Header.h";
-SWIFT_VERSION = "5.0";
-}; name = Release; };
-16756166711BF8EB847D27A3 = {isa = XCConfigurationList; buildConfigurations = (4F3CEE106E92F4D69824C96E,F843D9B6C00A726D1702C70C); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
-0EE5D24F4D949B96CAFE43AA = {isa = XCConfigurationList; buildConfigurations = (CC334CDC30E9F4C82541D54E,F9C744E8C0ECB712753E6342); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+
+/* Begin PBXFrameworksBuildPhase section */
+		913A8D789853031603D33BA2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C829ED4BC8C5A28ED840373D /* AppKit.framework in Frameworks */,
+				BC032C5BCD060D617142A3CE /* ApplicationServices.framework in Frameworks */,
+				8DBACB4151BC4F1BF0BA7207 /* QuartzCore.framework in Frameworks */,
+				AD770E7D79BE7BF87950A56F /* IOKit.framework in Frameworks */,
+				471540E4D8F01AAD38D12724 /* CoreFoundation.framework in Frameworks */,
+				393102CFF3820252BDD4305B /* Foundation.framework in Frameworks */,
+				0B569F79527287251851AB36 /* Security.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		095669A7984317CB79074170 /* Xcode */ = {
+			isa = PBXGroup;
+			children = (
+				CFA309F3F5454B6983C6973C /* config.h */,
+			);
+			path = Xcode;
+			sourceTree = "<group>";
+		};
+		1B611EBF352F10AC549F9C26 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				571C8ABBA62ED156922B53D3 /* libusb */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		247738128FEAB9FDD03E991E /* include */ = {
+			isa = PBXGroup;
+			children = (
+				EFB6727D186290753ABA195F /* x360bridge */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		51BCACC3607EAB368EADB111 /* libusb */ = {
+			isa = PBXGroup;
+			children = (
+				D78E0CAB50D1A292C2025CEA /* core.c */,
+				3D102EB8AB9F1673DF86293F /* descriptor.c */,
+				AB15610F38EF4D737616A880 /* hotplug.c */,
+				5131DDE94A465DCA9EC1993B /* io.c */,
+				FE904E5CAEC50023D29E5B3D /* strerror.c */,
+				94B2FCAA94C6839B05D51EBC /* sync.c */,
+				F5AC5A503AE86432ACCE43AA /* libusb.h */,
+				525902FD6DA8D3AA78A297DD /* libusbi.h */,
+				E17AF28CF23344E42127AB62 /* version.h */,
+				3EE8C7F04413C7D53E415E04 /* version_nano.h */,
+				A4FA8EB55DA7CDA23135297C /* os */,
+			);
+			path = libusb;
+			sourceTree = "<group>";
+		};
+		571C8ABBA62ED156922B53D3 /* libusb */ = {
+			isa = PBXGroup;
+			children = (
+				51BCACC3607EAB368EADB111 /* libusb */,
+				095669A7984317CB79074170 /* Xcode */,
+				0318B85E92FDCB554074BD17 /* COPYING */,
+			);
+			path = libusb;
+			sourceTree = "<group>";
+		};
+		8F275FB29E4BDB34D4428956 = {
+			isa = PBXGroup;
+			children = (
+				DD1252EA3055B86E0085F82C /* Assets.xcassets */,
+				F2045C25DD670B19214769B4 /* src */,
+				247738128FEAB9FDD03E991E /* include */,
+				1B611EBF352F10AC549F9C26 /* Vendor */,
+				F12906FE3CD838BC0C0165DF /* Xcode Support */,
+				9ED1EAF1ED0EF43A245CFD63 /* Frameworks */,
+				FFE67B5873BFAC2387F030BC /* Products */,
+				A0BAF3E0707342D3C0AEACEE /* Resources */,
+			);
+			sourceTree = "<group>";
+		};
+		9ED1EAF1ED0EF43A245CFD63 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0E138288FDFB41AA69FB846F /* AppKit.framework */,
+				2A5E580ADED29B1F7E30234E /* ApplicationServices.framework */,
+				3F78DE5D79A031D30D7A7452 /* QuartzCore.framework */,
+				3D8C00B892B59428E74C7645 /* IOKit.framework */,
+				E4EF81E7BF18D939B32862B2 /* CoreFoundation.framework */,
+				1B25BE1F516785A717DF4119 /* Foundation.framework */,
+				C2EBA3055F909472CF775531 /* Security.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A0BAF3E0707342D3C0AEACEE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E99EE4056AD1E85B0B98E4E1 /* Localizable.xcstrings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A4FA8EB55DA7CDA23135297C /* os */ = {
+			isa = PBXGroup;
+			children = (
+				23034B634FB6CBA33DA39FFE /* darwin_usb.c */,
+				589468F4B68056FF15416D0D /* events_posix.c */,
+				D995C76DF0F21FE5C58F484E /* threads_posix.c */,
+				CAAB3617A3D61D8ADB28358D /* darwin_usb.h */,
+				02E0773B17E911C8C7CC0770 /* events_posix.h */,
+				F0540D116881064D42B69975 /* threads_posix.h */,
+			);
+			path = os;
+			sourceTree = "<group>";
+		};
+		EFB6727D186290753ABA195F /* x360bridge */ = {
+			isa = PBXGroup;
+			children = (
+				082FE209AD169ED4EFAE0405 /* protocol.hpp */,
+				80332BE503A6D6D977C4DA77 /* hid_report.hpp */,
+				CAF1A737985231C236D9C39A /* receiver.hpp */,
+				FD890DC9D7E2AE4696B9109E /* wired_controller.hpp */,
+				764CFB6ACC3C27FB8EE2DED7 /* virtual_gamepad.hpp */,
+			);
+			path = x360bridge;
+			sourceTree = "<group>";
+		};
+		F12906FE3CD838BC0C0165DF /* Xcode Support */ = {
+			isa = PBXGroup;
+			children = (
+				1C0E0D5CE39FFC30FF99DB33 /* Info.plist */,
+				C84F5A415C4E959E2CC4F7AA /* X360ReceiverBridge.entitlements */,
+			);
+			name = "Xcode Support";
+			sourceTree = "<group>";
+		};
+		F2045C25DD670B19214769B4 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				0B9C7CA98C2F3EBB5D2DFCDD /* main.cpp */,
+				6DFA01DE017EA7CF211D4733 /* protocol.cpp */,
+				513031F1C7960091F7065ECE /* hid_report.cpp */,
+				FEE5DB5B27422E323B4D7FFB /* receiver.cpp */,
+				9CCEC2AD616108E746566C4F /* wired_controller.cpp */,
+				2536A328A819E3C519042EDE /* virtual_gamepad_macos.mm */,
+				64700AB15C780879FEE4435C /* macos_app.mm */,
+				78273060C1CA440203D0DBE5 /* DeveloperLabEnvironment.swift */,
+				89EE1147ADAE59792C7BDB54 /* X360DiagnosticDSUServer.swift */,
+				F39869E258E67CEFD98FF454 /* X360BridgeApp.swift */,
+				D3C3EF881C43200E4E7185DF /* X360BridgeManager.h */,
+				300C35F1DCF57F0D8A73E0E7 /* X360Bridge-Bridging-Header.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		FFE67B5873BFAC2387F030BC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				964BD5656C7A016EF0C9ADA7 /* X360 Controller Bridge.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F762108CA727F0BCD961FC74 /* X360 Controller Bridge */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0EE5D24F4D949B96CAFE43AA /* Build configuration list for PBXNativeTarget "X360 Controller Bridge" */;
+			buildPhases = (
+				CBE1FEED5CD18DD4A4CCC0A6 /* Sources */,
+				913A8D789853031603D33BA2 /* Frameworks */,
+				84A1ADBEE1321BC20135C0D8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "X360 Controller Bridge";
+			productName = "X360 Controller Bridge";
+			productReference = 964BD5656C7A016EF0C9ADA7 /* X360 Controller Bridge.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		16EEAF57BAFC2A41CAB7C99A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1600;
+			};
+			buildConfigurationList = 16756166711BF8EB847D27A3 /* Build configuration list for PBXProject "X360ControllerBridge" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				"pt-BR",
+				Base,
+			);
+			mainGroup = 8F275FB29E4BDB34D4428956;
+			productRefGroup = FFE67B5873BFAC2387F030BC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F762108CA727F0BCD961FC74 /* X360 Controller Bridge */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		84A1ADBEE1321BC20135C0D8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD1252EB3055B86E0085F82C /* Assets.xcassets in Resources */,
+				5FF96CD988ADA4402023BB1E /* Localizable.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CBE1FEED5CD18DD4A4CCC0A6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6C07FD66CDB998942EE6497 /* main.cpp in Sources */,
+				5F34324C67370134BB8B2B9D /* protocol.cpp in Sources */,
+				EF2D3647EBDB4305E63B2975 /* hid_report.cpp in Sources */,
+				331F5E79E4FFAD666EDAF724 /* receiver.cpp in Sources */,
+				FDFF313C1E5B16FA5D09F7D2 /* wired_controller.cpp in Sources */,
+				57B4AB9AB2CAD13691B6125E /* virtual_gamepad_macos.mm in Sources */,
+				2525D77169BBDEFC045E936E /* macos_app.mm in Sources */,
+				55C5E90072FD92024DC1715E /* DeveloperLabEnvironment.swift in Sources */,
+				99AB0A4983D812EF59266047 /* X360DiagnosticDSUServer.swift in Sources */,
+				8095C899D74367A8E6671795 /* X360BridgeApp.swift in Sources */,
+				0156CCEB567D0ACE4AA9B67C /* core.c in Sources */,
+				902E1D461B9091AA7DB8095B /* descriptor.c in Sources */,
+				5853BFF8C994DEEA194767C8 /* hotplug.c in Sources */,
+				DAF4FF6624969CAB73597180 /* io.c in Sources */,
+				E0ABDE2CC5CA71383AAE2BBE /* strerror.c in Sources */,
+				661805416EBC713C1CF7A50F /* sync.c in Sources */,
+				D189D46B6A1D9553A7F5FAAE /* darwin_usb.c in Sources */,
+				342589198C4FFA72D1386281 /* events_posix.c in Sources */,
+				959225FEA6720619EBFBBA9B /* threads_posix.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		4F3CEE106E92F4D69824C96E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		CC334CDC30E9F4C82541D54E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = entitlements/X360ReceiverBridge.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"X360BRIDGE_APPKIT_MAIN=1",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/include",
+					"$(PROJECT_DIR)/Vendor/libusb/libusb",
+					"$(PROJECT_DIR)/Vendor/libusb/libusb/os",
+					"$(PROJECT_DIR)/Vendor/libusb/Xcode",
+				);
+				INFOPLIST_FILE = Xcode/Info.plist;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 0.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.x360receiverbridge.app;
+				PRODUCT_NAME = "X360 Controller Bridge";
+				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "src/X360Bridge-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		F843D9B6C00A726D1702C70C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		F9C744E8C0ECB712753E6342 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = entitlements/X360ReceiverBridge.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"X360BRIDGE_APPKIT_MAIN=1",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/include",
+					"$(PROJECT_DIR)/Vendor/libusb/libusb",
+					"$(PROJECT_DIR)/Vendor/libusb/libusb/os",
+					"$(PROJECT_DIR)/Vendor/libusb/Xcode",
+				);
+				INFOPLIST_FILE = Xcode/Info.plist;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 0.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.x360receiverbridge.app;
+				PRODUCT_NAME = "X360 Controller Bridge";
+				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "src/X360Bridge-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0EE5D24F4D949B96CAFE43AA /* Build configuration list for PBXNativeTarget "X360 Controller Bridge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC334CDC30E9F4C82541D54E /* Debug */,
+				F9C744E8C0ECB712753E6342 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		16756166711BF8EB847D27A3 /* Build configuration list for PBXProject "X360ControllerBridge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F3CEE106E92F4D69824C96E /* Debug */,
+				F843D9B6C00A726D1702C70C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
 	};
-	rootObject = 16EEAF57BAFC2A41CAB7C99A;
+	rootObject = 16EEAF57BAFC2A41CAB7C99A /* Project object */;
 }
