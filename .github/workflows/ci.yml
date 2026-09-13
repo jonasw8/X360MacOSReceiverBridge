@@ -31,4 +31,26 @@ jobs:
       - name: Test
         run: ctest --test-dir build --output-on-failure
       - name: Smoke-test CLI
-        run: "build/X360 Controller Bridge.app/Contents/MacOS/X360 Controller Bridge" --help
+        run: |
+          "build/X360 Controller Bridge.app/Contents/MacOS/X360 Controller Bridge" --help
+
+  release:
+    needs: [linux, macos]
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: macos-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: brew install cmake ninja pkg-config libusb
+      - name: Build and package app
+        run: scripts/package-macos-app.sh
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ASSET="$(ls dist/*.zip)"
+          gh release create "${GITHUB_REF_NAME}" "$ASSET" \
+            --title "X360 Controller Bridge ${GITHUB_REF_NAME}" \
+            --generate-notes
